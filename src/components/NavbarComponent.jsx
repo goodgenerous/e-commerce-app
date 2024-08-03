@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ButtonComponent from "./ButtonComponent";
 import {
   Dialog,
   DialogPanel,
@@ -94,7 +95,7 @@ const NavbarComponent = () => {
           </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative">
-              <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-slate-300">
+              <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-slate-300 font-raleway">
                 Product
                 <ChevronDownIcon
                   aria-hidden="true"
@@ -151,30 +152,25 @@ const NavbarComponent = () => {
 
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-slate-200"
+              className="text-sm font-semibold leading-6 text-slate-100 font-raleway"
             >
               Features
             </a>
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-slate-200"
+              className="text-sm font-semibold leading-6 text-slate-100 font-raleway"
             >
               Marketplace
             </a>
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-slate-200"
+              className="text-sm font-semibold leading-6 text-slate-100 font-raleway"
             >
               Company
             </a>
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-slate-200"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            <ButtonComponent name="primary" title="Sign In" link="" />
           </div>
         </nav>
         <Dialog
@@ -228,19 +224,19 @@ const NavbarComponent = () => {
                   </Disclosure>
                   <a
                     href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Features
                   </a>
                   <a
                     href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Marketplace
                   </a>
                   <a
                     href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Company
                   </a>
@@ -248,7 +244,7 @@ const NavbarComponent = () => {
                 <div className="py-6">
                   <a
                     href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 rounded-full bg-white px-3.5 py-2.5 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Log in
                   </a>
