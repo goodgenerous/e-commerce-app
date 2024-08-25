@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import MarqueeComponent from "./MarqueeComponent";
+import ButtonComponent from "./ButtonComponent";
 
 const HeroComponent = () => {
   return (
@@ -42,12 +44,7 @@ const HeroComponent = () => {
                 >
                   Discover More <span aria-hidden="true">&rarr;</span>
                 </a>
-                <a
-                  href="#"
-                  className="font-raleway rounded-full bg-white px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Shopping Now
-                </a>
+                <ButtonComponent name="white" title="Shopping Now" />
               </div>
             </div>
           </div>

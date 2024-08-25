@@ -4,3 +4,37 @@
 body {
   background-color: #060f0c;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  background-color: aliceblue;
+  border-radius: 50%;
+  color: black;
+  width: 48px;
+  height: auto;
+  padding: 12px;
+}
+
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #ffc640;
+}
+
+.swiper-button-prev {
+  margin-left: 15%;
+}
+
+.swiper-button-next {
+  margin-right: 15%;
+}

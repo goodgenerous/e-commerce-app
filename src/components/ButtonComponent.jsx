@@ -5,7 +5,7 @@ const ButtonPrimary = (props) => {
     <>
       <a
         href={props.link}
-        className="rounded-full bg-secondary px-4 py-2 text-sm font-bold leading-6 text-black font-raleway hover:bg-secondary2"
+        className="ring-2 ring-secondary hover:ring-secondary2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold leading-6 text-black font-raleway hover:bg-secondary2"
       >
         {props.title}
       </a>
@@ -18,7 +18,7 @@ const ButtonSecondary = (props) => {
     <>
       <a
         href={props.link}
-        className="rounded-full bg-secondary px-4 py-2 text-sm font-bold leading-6 text-black font-raleway"
+        className="rounded-full bg-secondary px-4 py-2 text-sm font-bold leading-6 text-black font-raleway hover:bg-secondary2"
       >
         {props.title}
       </a>
@@ -31,7 +31,7 @@ const ButtonWhite = (props) => {
     <>
       <a
         href={props.link}
-        className="font-raleway rounded-full bg-white px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="ring-2 ring-white font-raleway rounded-full bg-white px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-secondary hover:ring-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         {props.title}
       </a>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const MarqueeComponent = () => {
   return (
     // <div className="relative flex overflow-x-hidden">
@@ -76,7 +74,7 @@ const MarqueeComponent = () => {
     // </div>
     <>
       <div className="flex gap-5 justify-center">
-        <div className="px-5 py-5 backdrop-blur-md bg-white/30 w-1/5 rounded-xl">
+        <div className="ring-1 ring-white px-7 py-7 backdrop-blur-md bg-white/30 w-1/5 rounded-lg">
           <span className="text-base text-white font-raleway">
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit officia consequat duis enim velit mollit.
@@ -97,7 +95,7 @@ const MarqueeComponent = () => {
             </div>
           </div>
         </div>
-        <div className="px-5 py-5 backdrop-blur-md bg-white/30 w-1/5 rounded-lg">
+        <div className="ring-1 ring-white px-7 py-7 backdrop-blur-md bg-white/30 w-1/5 rounded-lg">
           <span className="text-base text-white font-raleway">
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit officia consequat duis enim velit mollit.
@@ -118,7 +116,7 @@ const MarqueeComponent = () => {
             </div>
           </div>
         </div>
-        <div className="px-5 py-5 backdrop-blur-md bg-white/30 w-1/5 rounded-lg">
+        <div className="ring-1 ring-white px-7 py-7 backdrop-blur-md bg-white/30 w-1/5 rounded-lg">
           <span className="text-base text-white font-raleway">
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit officia consequat duis enim velit mollit.
