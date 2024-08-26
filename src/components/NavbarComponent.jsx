@@ -179,7 +179,7 @@ const NavbarComponent = () => {
             </a>
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <ButtonComponent name="primary" title="Sign In" link="" />
+            <ButtonComponent name="primary" title="Sign In" link="/login" />
           </div>
         </nav>
         <Dialog
@@ -249,7 +249,7 @@ const NavbarComponent = () => {
                     href="#"
                     className="-mx-3 rounded-full bg-white px-3.5 py-2.5 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Log in
+                    Sign in
                   </a>
                 </div>
               </div>
