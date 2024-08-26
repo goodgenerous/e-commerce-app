@@ -5,34 +5,7 @@ import { GlobalContext } from "../context/GlobalContext";
 
 const CategoriesComponent = () => {
   const { state } = useContext(GlobalContext);
-  const { dataAPICategories, setDataAPICategories } = state;
-
-  useEffect(() => {
-    axios
-      .get("https://my-e-commerce-api.vercel.app/api/categories")
-      .then((res) => {
-        setDataAPICategories(res.data.data);
-        console.log(dataAPICategories);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [setDataAPICategories]);
-
-  // const dataCategories = [
-  //   {
-  //     name: "Peralatan Masak",
-  //   },
-  //   {
-  //     name: "Peralatan Olahraga",
-  //   },
-  //   {
-  //     name: "Sepatu & Sandal",
-  //   },
-  //   {
-  //     name: "Mainan & Hobby",
-  //   },
-  // ];
+  const { dataAPICategories } = state;
 
   return (
     <div className="relative isolate px-3 py-16 lg:px-8">

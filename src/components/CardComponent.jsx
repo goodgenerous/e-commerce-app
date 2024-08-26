@@ -5,8 +5,14 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const CardComponent = () => {
+  const { state, handleFunction } = useContext(GlobalContext);
+  const { dataAPIProducts } = state;
+  const { handleFormat } = handleFunction;
+
   const dataCard = [
     {
       title: "Macbook Air M2 (2020)",
@@ -84,20 +90,17 @@ const CardComponent = () => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
               >
-                {dataCard.map((res, index) => {
+                {dataAPIProducts.map((res, index) => {
                   return (
                     <SwiperSlide key={index}>
                       <div className="card backdrop-blur-md bg-white/20 w-72 shadow-xl">
                         <figure>
-                          <img
-                            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                            alt="Shoes"
-                          />
+                          <img src={res.images} alt="Shoes" />
                         </figure>
                         <div className="card-body text-start text-white font-raleway">
-                          <h2 className="card-title">{res.title}</h2>
+                          <h2 className="card-title">{res.name}</h2>
                           <p className="text-white">
-                            Rp. <span>{res.price}</span>
+                            Rp. <span>{handleFormat(res.price)}</span>
                           </p>
                           <div className="flex gap-3">
                             <svg
@@ -113,7 +116,7 @@ const CardComponent = () => {
                               />
                             </svg>
                             <span className="font-normal text-base text-white">
-                              {res.city}
+                              Jakarta, Indonesia
                             </span>
                           </div>
                           <div className="flex gap-3">
@@ -131,7 +134,7 @@ const CardComponent = () => {
                             </svg>
 
                             <span className="font-normal text-base text-white">
-                              {res.rating} | {res.soldItem}+ Terjual
+                              5.0 | {res.qty} Tersisa
                             </span>
                           </div>
                           <div className="card-actions justify-start mt-3">

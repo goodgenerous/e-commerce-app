@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import ButtonComponent from "./ButtonComponent";
 import {
   Dialog,
@@ -11,51 +11,41 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from "@headlessui/react";
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   PhoneIcon,
   PlayCircleIcon,
+  GiftIcon,
+  LifebuoyIcon,
+  AcademicCapIcon,
+  PuzzlePieceIcon,
 } from "@heroicons/react/20/solid";
 
 const products = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
+    name: "Kumpulan Pakaian",
+    description: "Kumpulan pakaian terbaru sesuai pilhanmu",
     href: "#",
-    icon: ChartPieIcon,
+    icon: AcademicCapIcon,
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers",
+    name: "Peralatan Olahraga",
+    description: "Segala peralatan olahraga terlengkap",
     href: "#",
-    icon: CursorArrowRaysIcon,
+    icon: LifebuoyIcon,
   },
   {
-    name: "Security",
-    description: "Your customers’ data will be safe and secure",
+    name: "Sepatu & Sandal",
+    description: "Sepatu & sandal terbaru dan terupdate",
     href: "#",
-    icon: FingerPrintIcon,
+    icon: GiftIcon,
   },
   {
-    name: "Integrations",
-    description: "Connect with third-party tools",
+    name: "Mainan & Hobby",
+    description: "Temukan mainan dan peralatan hobby pilihanmu",
     href: "#",
-    icon: SquaresPlusIcon,
-  },
-  {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
-    icon: ArrowPathIcon,
+    icon: PuzzlePieceIcon,
   },
 ];
 const callsToAction = [
@@ -65,9 +55,32 @@ const callsToAction = [
 
 const NavbarComponent = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [navbarBg, setNavbarBg] = useState("");
+  const [textColor, setTextColor] = useState("text-white");
+
+  useEffect(() => {
+    // Listener untuk scroll navbar
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setNavbarBg(
+          "bg-white shadow-xl shadow-primary/50 transition ease-in-out"
+        );
+        setTextColor("text-gray-700");
+      } else {
+        setNavbarBg("");
+        setTextColor("text-white");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50">
+    <div className={`fixed inset-x-0 top-0 z-50 ${navbarBg}`}>
       <header>
         <nav
           aria-label="Global"
@@ -95,8 +108,10 @@ const NavbarComponent = () => {
           </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative">
-              <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-slate-300 font-raleway">
-                Product
+              <PopoverButton
+                className={`flex items-center gap-x-1 text-sm font-semibold leading-6 font-raleway ${textColor}`}
+              >
+                Categories
                 <ChevronDownIcon
                   aria-hidden="true"
                   className="h-5 w-5 flex-none text-gray-400"
@@ -116,13 +131,13 @@ const NavbarComponent = () => {
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                         <item.icon
                           aria-hidden="true"
-                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          className="h-6 w-6 text-gray-600 group-hover:text-secondary"
                         />
                       </div>
                       <div className="flex-auto">
                         <a
                           href={item.href}
-                          className="block font-semibold text-slate-300"
+                          className="block font-semibold text-slate-300 hover:text-black"
                         >
                           {item.name}
                           <span className="absolute inset-0" />
@@ -152,21 +167,15 @@ const NavbarComponent = () => {
 
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-slate-100 font-raleway"
+              className={`flex items-center gap-x-1 text-sm font-semibold leading-6 font-raleway ${textColor}`}
             >
               Features
             </a>
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-slate-100 font-raleway"
+              className={`flex items-center gap-x-1 text-sm font-semibold leading-6 font-raleway ${textColor}`}
             >
-              Marketplace
-            </a>
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-slate-100 font-raleway"
-            >
-              Company
+              About Us
             </a>
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -232,13 +241,7 @@ const NavbarComponent = () => {
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Marketplace
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-raleway font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Company
+                    About Us
                   </a>
                 </div>
                 <div className="py-6">
