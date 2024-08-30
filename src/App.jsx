@@ -5,6 +5,7 @@ import Layout from "./layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalProvider } from "./context/GlobalContext";
 import Login from "./pages/Login";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -21,6 +22,14 @@ function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/product"
+            element={
+              <Layout>
+                <Product />
+              </Layout>
+            }
+          />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>

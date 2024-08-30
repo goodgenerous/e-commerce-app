@@ -21,6 +21,8 @@ import {
   AcademicCapIcon,
   PuzzlePieceIcon,
 } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const products = [
   {
@@ -179,7 +181,16 @@ const NavbarComponent = () => {
             </a>
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <ButtonComponent name="primary" title="Sign In" link="/login" />
+            {!Cookies.get("token") && (
+              <Link to="/login">
+                <ButtonComponent name="primary" title="Sign In" />
+              </Link>
+            )}
+            {Cookies.get("token") && (
+              <Link onClick={() => Cookies.remove("token")} to="/login">
+                <ButtonComponent name="primary" title="Sign Out" />
+              </Link>
+            )}
           </div>
         </nav>
         <Dialog
