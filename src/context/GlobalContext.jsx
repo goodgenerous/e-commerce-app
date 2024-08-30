@@ -7,6 +7,10 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = (props) => {
   const navigate = useNavigate();
+  const [ID_PRODUCT, setCurrentIdProduct] = useState(-1);
+  const [quantityCount, setQuantityCount] = useState(1);
+  const [fetchStatus, setfetchStatus] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [dataAPICategories, setDataAPICategories] = useState([]);
   const [dataAPIProducts, setDataAPIProducts] = useState([]);
@@ -23,6 +27,14 @@ export const GlobalProvider = (props) => {
     email: "",
     password: "",
   });
+
+  const handleAddQuantity = () => {
+    setQuantityCount(quantityCount + 1);
+  };
+
+  const handleReduceQuantity = () => {
+    setQuantityCount(quantityCount - 1);
+  };
 
   const handleFormat = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -122,28 +134,38 @@ export const GlobalProvider = (props) => {
   };
 
   useEffect(() => {
-    axios
-      .get("https://my-e-commerce-api.vercel.app/api/categories")
-      .then((res) => {
-        setDataAPICategories(res.data.data);
-        console.log(dataAPICategories);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [setDataAPICategories]);
+    if (fetchStatus) {
+      axios
+        .get("https://my-e-commerce-api.vercel.app/api/categories")
+        .then((res) => {
+          setDataAPICategories(res.data.data);
+          console.log(dataAPICategories);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(true);
+        });
+      setfetchStatus(false);
+    }
+  }, [fetchStatus]);
 
   useEffect(() => {
-    axios
-      .get("https://my-e-commerce-api.vercel.app/api/products")
-      .then((res) => {
-        setDataAPIProducts(res.data.data);
-        console.log(dataAPIProducts);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [setDataAPIProducts]);
+    if (fetchStatus) {
+      axios
+        .get("https://my-e-commerce-api.vercel.app/api/products")
+        .then((res) => {
+          setDataAPIProducts(res.data.data);
+          console.log(dataAPIProducts);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(true);
+        });
+      setfetchStatus(false);
+    }
+  }, [fetchStatus]);
 
   let state = {
     dataAPICategories,
@@ -160,6 +182,14 @@ export const GlobalProvider = (props) => {
     setErrorMessage,
     thumbsSwiper,
     setThumbsSwiper,
+    fetchStatus,
+    setfetchStatus,
+    loading,
+    setLoading,
+    quantityCount,
+    setQuantityCount,
+    ID_PRODUCT,
+    setCurrentIdProduct,
   };
 
   let handleFunction = {
@@ -171,6 +201,8 @@ export const GlobalProvider = (props) => {
     toggleShowPassword,
     isDisabledLogin,
     isDisabledRegister,
+    handleAddQuantity,
+    handleReduceQuantity,
   };
 
   return (

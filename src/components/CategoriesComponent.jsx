@@ -5,7 +5,15 @@ import { GlobalContext } from "../context/GlobalContext";
 
 const CategoriesComponent = () => {
   const { state } = useContext(GlobalContext);
-  const { dataAPICategories } = state;
+  const { dataAPICategories, loading } = state;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center text-white">
+        Loading Data...
+      </div>
+    );
+  }
 
   return (
     <div className="relative isolate px-3 py-16 lg:px-8">

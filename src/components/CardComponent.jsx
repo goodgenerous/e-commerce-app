@@ -7,56 +7,26 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const CardComponent = () => {
+  const navigate = useNavigate();
   const { state, handleFunction } = useContext(GlobalContext);
-  const { dataAPIProducts } = state;
+  const { dataAPIProducts, loading, setCurrentIdProduct } = state;
   const { handleFormat } = handleFunction;
+  const handleDetailsProduct = (id) => {
+    setCurrentIdProduct(id);
+    navigate(`/product/${id}`);
+  };
 
-  const dataCard = [
-    {
-      title: "Macbook Air M2 (2020)",
-      price: "200.000",
-      city: "Ikjitha City",
-      rating: "5.0",
-      soldItem: "11",
-    },
-    {
-      title: "Macbook Air M2 (2020)",
-      price: "200.000",
-      city: "Agijukiv City",
-      rating: "5.0",
-      soldItem: "11",
-    },
-    {
-      title: "Macbook Air M2 (2020)",
-      price: "200.000",
-      city: "Etkepne City",
-      rating: "5.0",
-      soldItem: "11",
-    },
-    {
-      title: "Macbook Air M2 (2020)",
-      price: "200.000",
-      city: "Etkepne City",
-      rating: "5.0",
-      soldItem: "11",
-    },
-    {
-      title: "Macbook Air M2 (2020)",
-      price: "200.000",
-      city: "Etkepne City",
-      rating: "5.0",
-      soldItem: "11",
-    },
-    {
-      title: "Macbook Air M2 (2020)",
-      price: "200.000",
-      city: "Etkepne City",
-      rating: "5.0",
-      soldItem: "11",
-    },
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center text-white">
+        Loading Data...
+      </div>
+    );
+  }
+
   return (
     <>
       <div>
@@ -138,11 +108,9 @@ const CardComponent = () => {
                             </span>
                           </div>
                           <div className="card-actions justify-start mt-3">
-                            <ButtonComponent
-                              name="white"
-                              title="Buy Now"
-                              link=""
-                            />
+                            <a onClick={() => handleDetailsProduct(res._id)}>
+                              <ButtonComponent name="white" title="Buy Now" />
+                            </a>
                           </div>
                         </div>
                       </div>

@@ -30,6 +30,14 @@ function App() {
               </Layout>
             }
           />
+          <Route
+            path="/product/:id"
+            element={
+              <Layout>
+                <Product />
+              </Layout>
+            }
+          />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>

@@ -1,20 +1,54 @@
-import React from "react";
-const ProductOverview = () => {
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
+const ProductOverview = ({
+  category,
+  image,
+  title,
+  description,
+  price,
+  quantity,
+}) => {
+  const navigate = useNavigate();
+  const { state, handleFunction } = useContext(GlobalContext);
+  const { quantityCount } = state;
+  const { handleFormat, handleAddQuantity, handleReduceQuantity } =
+    handleFunction;
+
   return (
     <>
-      <section className="py-10 lg:py-24 relative ">
+      <section className="relative isolate px-5 pt-8 lg:px-8 min-h-screen flex justify-center items-center">
         <div className="bg-white mx-auto rounded-lg max-w-7xl p-10 sm:p-6 lg:p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 font-raleway">
             <div className="pro-detail w-full flex flex-col justify-center order-last lg:order-none max-lg:max-w-[608px] max-lg:mx-auto">
-              <p className="font-medium text-lg text-indigo-600 mb-4">
-                Travel &nbsp; / &nbsp; Menswear
+              <button
+                onClick={() => navigate(-1)}
+                className="bg-secondary p-3 hover:bg-secondary2 w-fit text-black font-semibold rounded-full mb-5"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5 8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </button>
+              <p className="font-medium text-lg text-primary2 mb-4">
+                {category}
               </p>
               <h2 className="mb-2 font-manrope font-bold text-3xl leading-10 text-gray-900">
-                Yellow Summer Travel Bag
+                {title}
               </h2>
               <div className="flex flex-col sm:flex-row sm:items-center mb-6">
                 <h6 className="font-manrope font-semibold text-2xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5">
-                  $220
+                  Rp. {handleFormat(price)}
                 </h6>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
@@ -115,15 +149,12 @@ const ProductOverview = () => {
                     </svg>
                   </div>
                   <span className="pl-2 font-normal leading-7 text-gray-500 text-sm ">
-                    1624 review
+                    {quantity} tersisa
                   </span>
                 </div>
               </div>
               <p className="text-gray-500 text-base font-normal mb-8 ">
-                the perfect companion for your next adventure! Embrace the
-                spirit of sunny escapades with this vibrant and versatile bag
-                designed to cater to your travel needs while adding a pop of
-                color to your journey.
+                {description}
               </p>
               <div className="block w-full">
                 <div className="text">
@@ -145,7 +176,10 @@ const ProductOverview = () => {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     <div className="flex items-center justify-center w-full">
-                      <button className="group py-4 px-6 border border-gray-400 rounded-l-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
+                      <button
+                        onClick={() => handleReduceQuantity()}
+                        className="group py-4 px-6 border border-gray-400 rounded-l-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50"
+                      >
                         <svg
                           className="stroke-gray-700 transition-all duration-500 group-hover:stroke-black"
                           width={22}
@@ -180,9 +214,12 @@ const ProductOverview = () => {
                       <input
                         type="text"
                         className="font-semibold text-gray-900 text-lg py-[13px] px-6 w-full lg:max-w-[118px] border-y border-gray-400 bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50 focus-within:bg-gray-50 outline-0"
-                        placeholder={1}
+                        placeholder={quantityCount}
                       />
-                      <button className="group py-4 px-6 border border-gray-400 rounded-r-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
+                      <button
+                        onClick={() => handleAddQuantity()}
+                        className="group py-4 px-6 border border-gray-400 rounded-r-full shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50"
+                      >
                         <svg
                           className="stroke-gray-700 transition-all duration-500 group-hover:stroke-black"
                           width={22}
@@ -214,9 +251,9 @@ const ProductOverview = () => {
                         </svg>
                       </button>
                     </div>
-                    <button className="group py-4 px-5 rounded-full bg-indigo-50 text-indigo-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-100 hover:shadow-indigo-200">
+                    <button className="group py-4 px-5 rounded-full bg-primary/10 text-primary2 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:bg-primary/30 hover:shadow-indigo-200">
                       <svg
-                        className="stroke-indigo-600 transition-all duration-500"
+                        className="stroke-primary transition-all duration-500"
                         width={22}
                         height={22}
                         viewBox="0 0 22 22"
@@ -234,105 +271,15 @@ const ProductOverview = () => {
                     </button>
                   </div>
                   <div className="flex items-center gap-3">
-                    {/* <button className="group transition-all duration-500 p-4 rounded-full bg-indigo-50 hover:bg-indigo-100 hover:shadow-sm hover:shadow-indigo-300">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={26}
-                        height={26}
-                        viewBox="0 0 26 26"
-                        fill="none"
-                      >
-                        <path
-                          d="M4.47084 14.3196L13.0281 22.7501L21.9599 13.9506M13.0034 5.07888C15.4786 2.64037 19.5008 2.64037 21.976 5.07888C24.4511 7.5254 24.4511 11.4799 21.9841 13.9265M12.9956 5.07888C10.5204 2.64037 6.49824 2.64037 4.02307 5.07888C1.54789 7.51738 1.54789 11.4799 4.02307 13.9184M4.02307 13.9184L4.04407 13.939M4.02307 13.9184L4.46274 14.3115"
-                          stroke="#4F46E5"
-                          strokeWidth="1.6"
-                          strokeMiterlimit={10}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button> */}
-                    <button className="text-center w-full px-5 py-4 rounded-[100px] bg-indigo-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
+                    <button className="text-center w-full px-5 py-4 rounded-[100px] bg-primary flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-primary2 hover:shadow-indigo-400">
                       Buy Now
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="">
-              <div
-                style={{
-                  swiperNavigationColor: "#fff",
-                  swiperPaginationColor: "#fff",
-                }}
-                className="swiper product-prev mb-6"
-              >
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1700471851.png"
-                      alt="Yellow Travel Bag image"
-                      className="mx-auto rounded-lg"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1711514857.png"
-                      alt="Yellow Travel Bag image"
-                      className="mx-auto"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1711514875.png"
-                      alt="Yellow Travel Bag image"
-                      className="mx-auto"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1711514892.png"
-                      alt="Yellow Travel Bag image"
-                      className="mx-auto"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                thumbsslider=""
-                className="swiper product-thumb max-w-[608px] mx-auto"
-              >
-                {/* <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1700471871.png"
-                      alt="Travel Bag image"
-                      className=" rounded-lg cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1711514930.png"
-                      alt="Travel Bag image"
-                      className=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1700471908.png"
-                      alt="Travel Bag image"
-                      className=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="https://pagedone.io/asset/uploads/1700471925.png"
-                      alt="Travel Bag image"
-                      className=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600"
-                    />
-                  </div>
-                </div> */}
-              </div>
+            <div>
+              <img src={image} alt={title} className="mx-auto rounded-lg" />
             </div>
           </div>
         </div>
