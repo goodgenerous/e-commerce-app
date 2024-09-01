@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ButtonComponent from "./ButtonComponent";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   Dialog,
   DialogPanel,
@@ -20,6 +21,8 @@ import {
   LifebuoyIcon,
   AcademicCapIcon,
   PuzzlePieceIcon,
+  PencilIcon,
+  ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -108,7 +111,7 @@ const NavbarComponent = () => {
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
             </button>
           </div>
-          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12 ">
             <Popover className="relative">
               <PopoverButton
                 className={`flex items-center gap-x-1 text-sm font-semibold leading-6 font-raleway ${textColor}`}
@@ -122,7 +125,7 @@ const NavbarComponent = () => {
 
               <PopoverPanel
                 transition
-                className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <div className="p-4">
                   {products.map((item) => (
@@ -187,9 +190,43 @@ const NavbarComponent = () => {
               </Link>
             )}
             {Cookies.get("token") && (
-              <Link onClick={() => Cookies.remove("token")} to="/login">
-                <ButtonComponent name="primary" title="Sign Out" />
-              </Link>
+              <Menu>
+                <MenuButton className="inline-flex items-center gap-2 rounded-md py-1.5 px-3 text-sm/6 font-semibold text-white font-raleway">
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <ChevronDownIcon className="size-4 fill-white/60" />
+                </MenuButton>
+
+                <MenuItems
+                  transition
+                  anchor="bottom end"
+                  className="w-52 origin-top-right rounded-xl border border-white bg-white p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+                >
+                  <MenuItem className="hover:bg-gray-200">
+                    <Link
+                      to="/edit-profile"
+                      className="text-gray-600 flex w-full items-center gap-2 rounded-lg py-1.5 px-3"
+                    >
+                      <PencilIcon className="size-4 fill-gray-600" />
+                      Edit Profile
+                    </Link>
+                  </MenuItem>
+                  <div className="my-1 h-px bg-gray-300" />
+                  <MenuItem className="hover:bg-gray-200">
+                    <Link
+                      onClick={() => Cookies.remove("token")}
+                      to="/login"
+                      className="text-gray-600 flex w-full items-center gap-2 rounded-lg py-1.5 px-3"
+                    >
+                      <ArrowLeftStartOnRectangleIcon className="size-4 fill-gray-600" />
+                      Sign Out
+                    </Link>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
             )}
           </div>
         </nav>

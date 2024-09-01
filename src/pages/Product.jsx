@@ -35,7 +35,7 @@ const Product = () => {
   return (
     <div className="bg-backgroundColor">
       <ProductOverview
-        category="Sepatu & Sandal"
+        category={dataDetails.category.name}
         image={dataDetails.images[0]}
         title={dataDetails.name}
         description={dataDetails.description}

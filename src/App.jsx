@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalProvider } from "./context/GlobalContext";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
+import Profile from "./pages/Profile";
+import LayoutDashboard from "./layout/LayoutDashboard";
 
 function App() {
   return (
@@ -36,6 +38,14 @@ function App() {
               <Layout>
                 <Product />
               </Layout>
+            }
+          />
+          <Route
+            path="/edit-profile"
+            element={
+              <LayoutDashboard>
+                <Profile />
+              </LayoutDashboard>
             }
           />
         </Routes>
