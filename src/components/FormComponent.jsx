@@ -3,6 +3,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
+import Logo from "../assets/LogoGemara.png";
 
 /* eslint-disable react/no-unknown-property */
 
@@ -23,7 +24,7 @@ const FormLogin = () => {
             <div className="w-full bg-white rounded-lg ring-1 ring-white/70 shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8 backdrop-blur-md bg-white/20 rounded-md">
                 <div className="flex justify-center items-center">
-                  <img className="w-1/6 h-auto" alt="Logo" />
+                  <img className="w-1/6 h-auto" src={Logo} alt="Logo" />
                 </div>
                 <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Sign In
@@ -185,7 +186,7 @@ const FormRegister = () => {
             <div className="w-full bg-white rounded-lg ring-1 ring-white/70 shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8 backdrop-blur-md bg-white/20 rounded-md">
                 <div className="flex justify-center items-center">
-                  <img className="w-1/6 h-auto" alt="Logo" />
+                  <img className="w-1/6 h-auto" src={Logo} alt="Logo" />
                 </div>
                 <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Register your account
