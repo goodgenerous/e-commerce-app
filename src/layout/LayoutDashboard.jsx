@@ -4,8 +4,8 @@ import { LuUserCog } from "react-icons/lu";
 import { TbDatabaseStar } from "react-icons/tb";
 import { SlLogout } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import { GrOverview } from "react-icons/gr";
 import Cookies from "js-cookie";
+import Logo from "../assets/LogoGemara.png";
 
 const LayoutDashboard = (props) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,14 +15,14 @@ const LayoutDashboard = (props) => {
   };
 
   return (
-    <>
-      <nav className="bg-secondary border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50 font-raleway">
+    <div className="bg-backgroundColor font-raleway">
+      <nav className="bg-gray-50 ring-1 ring-secondary px-4 py-2.5 fixed left-0 right-0 top-0 z-50 m-3 rounded-lg">
         <div className="flex flex-wrap justify-between items-center">
           <div className="flex justify-start items-center">
             <Link to="/" className="flex items-center justify-between mr-4">
-              <img src="" className="mr-3 h-8" alt="Flowbite Logo" />
-              <span className="self-center text-2xl font-bold whitespace-nowrap text-white dark:text-white">
-                ApplyNow
+              <img src={Logo} className="mr-3 h-8" alt="Flowbite Logo" />
+              <span className="self-center text-2xl font-bold whitespace-nowrap text-slate-700">
+                Gemara
               </span>
             </Link>
             <form action="#" className="hidden md:block md:pl-2">
@@ -95,9 +95,9 @@ const LayoutDashboard = (props) => {
       <aside
         className={`fixed top-0 left-0 z-40 w-72 h-screen pt-14 transition-transform ${
           isSidebarOpen ? "" : "-translate-x-full"
-        } bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+        } md:translate-x-0`}
       >
-        <Sidebar className="h-full w-full">
+        <Sidebar className="h-full w-full m-3 rounded-lg mt-8 ring-1 ring-secondary">
           <Sidebar.Items>
             <Sidebar.ItemGroup>
               <Sidebar.Item icon={LuUserCog}>
@@ -120,7 +120,7 @@ const LayoutDashboard = (props) => {
         </Sidebar>
       </aside>
       <main className="ml-0 md:ml-72 h-auto pt-20"> {props.children} </main>
-    </>
+    </div>
   );
 };
 

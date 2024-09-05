@@ -23,6 +23,13 @@ export const GlobalProvider = (props) => {
     profilePicture: "",
   });
 
+  const [dataProfile, setDataProfile] = useState({
+    fullName: "",
+    username: "",
+    email: "",
+    profilePicture: "",
+  });
+
   const [dataLogin, setDataLogin] = useState({
     email: "",
     password: "",
@@ -133,6 +140,22 @@ export const GlobalProvider = (props) => {
       });
   };
 
+  // useEffect(() => {
+  //   if (fetchStatus) {
+  //     axios
+  //       .get("https://my-e-commerce-api.vercel.app/api/auth/me", {
+  //         headers: { Authorization: "Bearer " + Cookies.get("token") },
+  //       })
+  //       .then((res) => {
+  //         setDataProfile(res.data);
+  //         console.log(dataProfile);
+  //       })
+  //       .catch((err) => {
+  //         alert(err.message);
+  //       });
+  //   }
+  // }, [fetchStatus]); // Add the dependency array
+
   useEffect(() => {
     if (fetchStatus) {
       axios
@@ -190,6 +213,8 @@ export const GlobalProvider = (props) => {
     setQuantityCount,
     ID_PRODUCT,
     setCurrentIdProduct,
+    dataProfile,
+    setDataProfile,
   };
 
   let handleFunction = {

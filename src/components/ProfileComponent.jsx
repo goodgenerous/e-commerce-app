@@ -1,11 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalContext";
 
 const ProfileComponent = () => {
+  const { state } = useContext(GlobalContext);
+  const { userData } = state;
+
+  console.log(userData);
+
   return (
     <>
-      <div className="p-2 md:p-4">
-        <h1 className="py-5 px-5 text-xl font-bold"> Edit your profile </h1>
+      <div className="p-4 bg-gray-50 mt-2 ml-6 mr-3 rounded-md ring-1 ring-secondary h-screen fixed w-screen overflow-y-hidden">
+        <h1 className="py-5 px-5 text-xl font-bold text-black">
+          {" "}
+          Edit your profile{" "}
+        </h1>
         <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
           <div className="grid max-w-2xl mx-auto mt-8">
             <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
@@ -17,7 +26,7 @@ const ProfileComponent = () => {
               <div className="flex flex-col space-y-5 sm:ml-8">
                 <button
                   type="button"
-                  className="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-secondary rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
+                  className="py-3.5 px-7 text-base font-medium text-white focus:outline-none bg-secondary rounded-lg border border-indigo-200 hover:bg-secondary2 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
                 >
                   Change picture
                 </button>
@@ -27,16 +36,15 @@ const ProfileComponent = () => {
               <div className="mb-2 sm:mb-6">
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-black dark:text-white"
                 >
                   Your name
                 </label>
                 <input
                   type="text"
-                  // value={dataRegister.name}
-                  value="John Doe"
+                  // value={dataProfile.fullName}
                   name="name"
-                  className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                  className="bg-indigo-50 border border-indigo-300 text-black text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                   placeholder="John Doe"
                   disabled
                 />
@@ -44,17 +52,16 @@ const ProfileComponent = () => {
               <div className="mb-2 sm:mb-6">
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-black dark:text-white"
                 >
                   Your email
                 </label>
                 <input
                   type="email"
                   id="email"
-                  // value={dataRegister.email}
-                  value="johndoe@mail.com "
+                  // value={dataProfile.email}
                   name="email"
-                  className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                  className="bg-indigo-50 border border-indigo-300 text-black text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                   placeholder="johndoe@mail.com"
                   disabled
                 />
@@ -62,7 +69,7 @@ const ProfileComponent = () => {
               <div className="mb-2 sm:mb-6">
                 <label
                   htmlFor="image_url"
-                  className="block mb-2 text-sm font-medium text-indigo-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-black dark:text-white"
                 >
                   Image URL
                 </label>

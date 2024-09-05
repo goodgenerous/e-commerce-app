@@ -27,6 +27,8 @@ import {
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import Logo from "../assets/LogoGemara.png";
+import { Button, Modal } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const products = [
   {
@@ -63,6 +65,7 @@ const NavbarComponent = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navbarBg, setNavbarBg] = useState("");
   const [textColor, setTextColor] = useState("text-white");
+  const [openModal, setOpenModal] = useState(true);
 
   useEffect(() => {
     // Listener untuk scroll navbar
@@ -196,7 +199,6 @@ const NavbarComponent = () => {
                   />
                   <ChevronDownIcon className="size-4 fill-white/60" />
                 </MenuButton>
-
                 <MenuItems
                   transition
                   anchor="bottom end"
@@ -214,14 +216,50 @@ const NavbarComponent = () => {
                   <div className="my-1 h-px bg-gray-300" />
                   <MenuItem className="hover:bg-gray-200">
                     <Link
-                      onClick={() => Cookies.remove("token")}
-                      to="/login"
+                      // onClick={() => Cookies.remove("token")}
+                      onClick={() => setOpenModal(true)}
                       className="text-gray-600 flex w-full items-center gap-2 rounded-lg py-1.5 px-3"
                     >
                       <ArrowLeftStartOnRectangleIcon className="size-4 fill-gray-600" />
                       Sign Out
                     </Link>
                   </MenuItem>
+                  {openModal && (
+                    <Modal
+                      show={openModal}
+                      size="md"
+                      popup={true}
+                      onClose={() => setOpenModal(false)}
+                    >
+                      <Modal.Header />
+                      <Modal.Body>
+                        <div className="text-center">
+                          <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                            Are you sure you want to sign out?
+                          </h3>
+                          <div className="flex justify-center gap-4">
+                            <Button
+                              color="failure"
+                              onClick={() => {
+                                Cookies.remove("token");
+                                setOpenModal(false);
+                              }}
+                              href="/login"
+                            >
+                              Yes, sign out
+                            </Button>
+                            <Button
+                              color="gray"
+                              onClick={() => setOpenModal(false)}
+                            >
+                              No, cancel
+                            </Button>
+                          </div>
+                        </div>
+                      </Modal.Body>
+                    </Modal>
+                  )}
                 </MenuItems>
               </Menu>
             )}

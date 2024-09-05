@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 const CardComponent = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const CardComponent = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center text-white">
-        Loading Data...
+        <Spinner color="warning" aria-label="Large spinner example" size="lg" />
       </div>
     );
   }

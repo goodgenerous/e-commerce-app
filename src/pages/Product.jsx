@@ -3,6 +3,7 @@ import ProductOverview from "../components/ProductOverview";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
+import { Spinner } from "flowbite-react";
 
 const Product = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const Product = () => {
   if (!dataDetails) {
     return (
       <div className="min-h-screen flex justify-center items-center text-white">
-        Loading Data...
+        <Spinner color="warning" aria-label="Large spinner example" size="lg" />
       </div>
     );
   }

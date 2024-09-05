@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
+import { Spinner } from "flowbite-react";
 
 const CategoriesComponent = () => {
   const { state } = useContext(GlobalContext);
@@ -10,7 +11,7 @@ const CategoriesComponent = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center text-white">
-        Loading Data...
+        <Spinner color="warning" aria-label="Large spinner example" size="lg" />
       </div>
     );
   }
@@ -29,7 +30,7 @@ const CategoriesComponent = () => {
             return (
               <div
                 key={index}
-                className="ring-1 ring-white px-10 py-10 backdrop-blur-md bg-white/30 w-1/2 rounded-xl"
+                className="ring-1 ring-white p-10 backdrop-blur-md bg-white/30 w-1/2 rounded-xl"
               >
                 <div className="text-3xl font-bold mb-4 font-raleway text-white">
                   {res.name}
